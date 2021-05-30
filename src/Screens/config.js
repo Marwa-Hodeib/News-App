@@ -1,6 +1,12 @@
 const configs = {
   screenOptions : {
-    headerTitleAlign: 'center'
+    headerTitleAlign: 'center',
+    headerStyle: {
+      backgroundColor: '#1e57b3',  
+    },
+    headerTitleStyle:{
+      color: "white"
+    }
   }
 } 
 

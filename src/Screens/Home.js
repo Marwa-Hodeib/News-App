@@ -9,7 +9,7 @@ import HomeCard from '../Components/HomeCard';
 
 
 
-const TopPicks = () => {
+const TopPicks = ({navigation}) => {
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -32,6 +32,8 @@ const TopPicks = () => {
          source={article.source.name}
          date={article.publishedAt}
          imageSource={article.urlToImage}
+         navigation={navigation}
+         author={article.author}
          />
         })}
       </View>
@@ -54,7 +56,7 @@ const Home = () => {
         <Stack.Screen
         name="Details"
         component={Details}
-        options={{title: 'details'}}
+        options={{title: ''}}
         
         />
     </Stack.Navigator>
