@@ -5,7 +5,8 @@ export const storeData = async (article) => {
   try {
     let articles = await getDataFromHistory();
     articles = articles ? articles : [];
-    articles.push(article)
+    articles =  articles.filter((item) => item.title !== article.title)
+    articles.unshift(article)
     const jsonValue = JSON.stringify(articles)
     await AsyncStorage.setItem('articles', jsonValue)
   } catch (e) {

@@ -3,18 +3,20 @@ import {Text, View , SafeAreaView, ScrollView } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Details from './Details';
 import configs from './config';
-import {getTopHeadlines} from '../fetch';
+import {getTopHeadlines} from '../API';
 import HomeCard from '../Components/HomeCard';
+import { useIsFocused } from '@react-navigation/native';
 
 
 
 
 const TopPicks = ({navigation,source, history}) => {
+  const isFocused = useIsFocused();
   const [data, setData] = useState([])
 
   useEffect(() => {
     getData()
-  },[])
+  },[isFocused])
 
   const getData = async() =>{
     const results = await getTopHeadlines(source, history)
@@ -37,6 +39,7 @@ const TopPicks = ({navigation,source, history}) => {
          imageSource={article.urlToImage}
          navigation={navigation}
          author={article.author}
+         history={history}
          />
         })}
       </View>
@@ -53,11 +56,20 @@ const Headlines = ({route}) => {
   const title = route.params?.title;
   const history = route.params?.history;
 
+  let headerTitle = `Today's Picks`
+  if (title) {
+    headerTitle = title
+  }
+
+  if (history) {
+    headerTitle = 'History'
+  }
+
   return (
     <Stack.Navigator screenOptions={configs.screenOptions}>
        <Stack.Screen
         name="Today Picks"
-        options={{ title: title ? title : `Today's Picks` }}
+        options={{ title: headerTitle }}
         >
           {(props) => <TopPicks {...props} source={title} history={history}/>}
         </Stack.Screen>

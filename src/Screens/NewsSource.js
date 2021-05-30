@@ -3,7 +3,7 @@ import {View, SafeAreaView,ScrollView} from 'react-native'
 import Details from './Details';
 import { createStackNavigator } from '@react-navigation/stack';
 import configs from './config';
-import {getNewsSources} from '../fetch';
+import {getNewsSources} from '../API';
 import NewsSourceList from '../Components/NewsSourceList';
 import Headlines from './Headlines';
 

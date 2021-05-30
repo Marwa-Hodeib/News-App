@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import {storeData} from '../fetch';
+import {storeData} from '../API';
 
 
-const HomeCard = ({title, imageSource, date, content,  source, navigation, author}) => {
+const HomeCard = ({title, imageSource, date, content,  source, navigation, author, history}) => {
 
   const data = {
     title:title, 
@@ -16,7 +16,9 @@ const HomeCard = ({title, imageSource, date, content,  source, navigation, autho
   }
 
   const onClick = async () => {
-    await storeData(data)
+    if (!history) {
+      await storeData(data)
+    }
     navigation.navigate('Details', {
       title:title, 
       imageSource:imageSource,
