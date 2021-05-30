@@ -5,12 +5,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import configs from './config';
 import {getNewsSources} from '../fetch';
 import NewsSourceList from '../Components/NewsSourceList';
+import Headlines from './Headlines';
 
 
 
 const Stack = createStackNavigator();
 
-const OtherNews = () => {
+const Sources = ({navigation}) => {
   const [sources, setSources] = useState([]);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const OtherNews = () => {
       return <NewsSourceList 
       key={source.id}
       title={source.name}
+      navigation={navigation}
       />
     })}
     </ScrollView>
@@ -41,13 +43,14 @@ const NewsSource = () => {
     <Stack.Navigator screenOptions={configs.screenOptions}>
     <Stack.Screen
      name="Other News"
-     component={OtherNews}
+     component={Sources}
      options={{ title: 'News Source' }}
+
      />
      <Stack.Screen
-     name="Details"
-     component={Details}
-     options={{title: 'details'}}
+     name="Headlines"
+     component={Headlines}
+     options={{headerShown: false}}
      
      />
  </Stack.Navigator>

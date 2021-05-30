@@ -9,7 +9,7 @@ import HomeCard from '../Components/HomeCard';
 
 
 
-const TopPicks = ({navigation}) => {
+const TopPicks = ({navigation,source, history}) => {
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -17,8 +17,11 @@ const TopPicks = ({navigation}) => {
   },[])
 
   const getData = async() =>{
-    const results = await getTopHeadlines()
-    setData(results.articles)
+    const results = await getTopHeadlines(source, history)
+    if (results.articles) {
+      setData(results.articles)
+    }
+   
   }
 
   return(
@@ -45,23 +48,28 @@ const TopPicks = ({navigation}) => {
 
 const Stack = createStackNavigator();
 
-const Home = () => {
+const Headlines = ({route}) => {
+
+  const title = route.params?.title;
+  const history = route.params?.history;
+
   return (
     <Stack.Navigator screenOptions={configs.screenOptions}>
        <Stack.Screen
         name="Today Picks"
-        component={TopPicks}
-        options={{ title: `Today's Picks` }}
-        />
+        options={{ title: title ? title : `Today's Picks` }}
+        >
+          {(props) => <TopPicks {...props} source={title} history={history}/>}
+        </Stack.Screen>
         <Stack.Screen
         name="Details"
         component={Details}
         options={{title: ''}}
-        
         />
     </Stack.Navigator>
   
   )
 }
 
-export default Home
+export default Headlines
+

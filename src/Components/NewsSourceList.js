@@ -3,10 +3,14 @@ import { Button, StyleSheet } from 'react-native';
 import { List } from 'react-native-paper';
 
 
-const NewsSourceList = ({title}) => (
+const NewsSourceList = ({title, navigation}) => (
   <List.Item
     title={title}
-    right={()=><Button title='View' onPress={()=>{console.log('waw')}}/>}
+    right={()=><Button title='View' onPress={()=>{
+      navigation.navigate('Headlines', {
+        title:title,
+      })
+    }}/>}
     style={styles.listStyle}
 
   />

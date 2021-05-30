@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../Screens/Home';
+import Headlines from '../Screens/Headlines';
 import NewsSource from '../Screens/NewsSource';
 import History from '../Screens/History';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -39,7 +39,7 @@ const TabNavigation = () => {
    
     )}>
     
-  <Tab.Screen name="Home" component={Home} />
+  <Tab.Screen name="Home" component={Headlines} />
   <Tab.Screen name="NewsSource" component={NewsSource} />
   <Tab.Screen name="History" component={History} />
   </Tab.Navigator>

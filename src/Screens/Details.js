@@ -38,7 +38,7 @@ const styles = StyleSheet.create ({
     resizeMode: 'contain'
   },
   alignment: {
-    textAlign: 'right'
+    textAlign: 'center'
   },
   padding:{
     padding: 20
