@@ -137,6 +137,17 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs
+    {
+        release
+        {
+            storeFile file('your_key_name.keystore')
+            storePassword 'marwa123'
+            keyAlias 'your_key_alias'
+            keyPassword 'marwa123'
+        }
+    }
     splits {
         abi {
             reset()
@@ -163,6 +174,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
 
