@@ -17,7 +17,7 @@ const TabNavigation = () => {
     {
       showLabel:false,
       inactiveTintColor:'#e1dce3',
-      activeTintColor:'#c603fc',
+      activeTintColor:'#1e57b3',
     }
   }
    screenOptions={({ route }) => (
